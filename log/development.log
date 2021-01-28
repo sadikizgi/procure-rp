@@ -1,0 +1,169 @@
+Started GET "/" for 127.0.0.1 at 2021-01-27 17:24:10 +0300
+  [1m[35m (2.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (11.5ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (8.2ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+
+ActiveRecord::PendingMigrationError - Migrations are pending. To resolve this issue, run:
+        bin/rails db:migrate RAILS_ENV=development
+You have 3 pending migrations:
+20210115214425_devise_create_users.rb
+20210115214431_create_friendly_id_slugs.rb
+20210116173834_add_subdomian_to_users.rb:
+
+Started POST "/__better_errors/43d1303db6a874b7/variables" for 127.0.0.1 at 2021-01-27 17:24:10 +0300
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to DeviseCreateUsers (20210115214425)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar, "reset_password_sent_at" datetime, "remember_created_at" datetime, "first_name" varchar, "last_name" varchar, "admin" boolean DEFAULT 0, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210115214425"]]
+  [1m[36mTRANSACTION (6.2ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateFriendlyIdSlugs (20210115214431)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "friendly_id_slugs" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "slug" varchar NOT NULL, "sluggable_id" integer NOT NULL, "sluggable_type" varchar(50), "scope" varchar, "created_at" datetime)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id" ON "friendly_id_slugs" ("sluggable_type", "sluggable_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_friendly_id_slugs_on_slug_and_sluggable_type" ON "friendly_id_slugs" ("slug", "sluggable_type")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope" ON "friendly_id_slugs" ("slug", "sluggable_type", "scope")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210115214431"]]
+  [1m[36mTRANSACTION (5.2ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddSubdomianToUsers (20210116173834)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  [1m[35mALTER TABLE "users" ADD "subdomain" varchar[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210116173834"]]
+  [1m[36mTRANSACTION (12.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.5ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-01-27 14:24:22.603143"], ["updated_at", "2021-01-27 14:24:22.603143"]]
+  [1m[36mTRANSACTION (12.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ config/initializers/apartment.rb:33:in `block (2 levels) in <main>'
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "users"."subdomain" FROM "users"[0m
+  ↳ config/initializers/apartment.rb:33:in `block (2 levels) in <main>'
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "users"."subdomain" FROM "users"[0m
+  ↳ config/initializers/apartment.rb:33:in `block (2 levels) in <main>'
+Started GET "/" for 127.0.0.1 at 2021-01-27 17:24:28 +0300
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 2.0ms | Allocations: 333)
+[Webpacker] Compiling...
+[Webpacker] Compiled all packs in /home/izgi/Desktop/procure/public/packs
+[Webpacker] Hash: 41dc1ee7fe0f01c2a8af
+Version: webpack 4.46.0
+Time: 14812ms
+Built at: 01/27/2021 5:24:44 PM
+                                                            Asset       Size       Chunks                         Chunk Names
+                           js/application-0c836586a9b4deb7e85b.js   5.04 MiB  application  [emitted] [immutable]  application
+                       js/application-0c836586a9b4deb7e85b.js.map   5.34 MiB  application  [emitted] [dev]        application
+                             js/hello_vue-631aba156ebfc16445bb.js    266 KiB    hello_vue  [emitted] [immutable]  hello_vue
+                         js/hello_vue-631aba156ebfc16445bb.js.map    312 KiB    hello_vue  [emitted] [dev]        hello_vue
+                                                    manifest.json  803 bytes               [emitted]              
+media/images/icons/checkmark-94d128efd051661a94df22e517d9e626.svg  119 bytes               [emitted]              
+Entrypoint application = js/application-0c836586a9b4deb7e85b.js js/application-0c836586a9b4deb7e85b.js.map
+Entrypoint hello_vue = js/hello_vue-631aba156ebfc16445bb.js js/hello_vue-631aba156ebfc16445bb.js.map
+[./app/javascript/app.vue] 1.16 KiB {hello_vue} [built]
+[./app/javascript/app.vue?vue&type=script&lang=js&] 364 bytes {hello_vue} [built]
+[./app/javascript/app.vue?vue&type=style&index=0&id=6fb8108a&scoped=true&lang=css&] 361 bytes {hello_vue} [built]
+[./app/javascript/app.vue?vue&type=template&id=6fb8108a&scoped=true&] 213 bytes {hello_vue} [built]
+[./app/javascript/channels sync recursive _channel\.js$] ./app/javascript/channels sync _channel\.js$ 160 bytes {application} [built]
+[./app/javascript/channels/index.js] 211 bytes {application} [built]
+[./app/javascript/packs/application.js] 526 bytes {application} [built]
+[./app/javascript/packs/hello_vue.js] 1.89 KiB {hello_vue} [built]
+[./app/javascript/stylesheets/application.scss] 664 bytes {application} [built]
+[./node_modules/@rails/activestorage/app/assets/javascripts/activestorage.js] 33.9 KiB {application} [built]
+[./node_modules/@rails/ujs/lib/assets/compiled/rails-ujs.js] 28.4 KiB {application} [built]
+[./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./app/javascript/stylesheets/application.scss] ./node_modules/css-loader/dist/cjs.js??ref--3-1!./node_modules/postcss-loader/src??ref--3-2!./node_modules/sass-loader/dist/cjs.js??ref--3-3!./app/javascript/stylesheets/application.scss 4.9 MiB {application} [built]
+[./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js] 6.67 KiB {application} {hello_vue} [built]
+[./node_modules/turbolinks/dist/turbolinks.js] 52.2 KiB {application} [built]
+[./node_modules/vue/dist/vue.runtime.esm.js] 219 KiB {hello_vue} [built]
+    + 13 hidden modules
+
+  Rendered shared/_head.html.erb (Duration: 17343.2ms | Allocations: 13982)
+  Rendered shared/_flash_notice.html.erb (Duration: 0.7ms | Allocations: 234)
+  Rendered shared/_header.html.erb (Duration: 3.2ms | Allocations: 499)
+  Rendered layout layouts/application.html.erb (Duration: 17351.6ms | Allocations: 15845)
+Completed 200 OK in 17387ms (Views: 17356.5ms | ActiveRecord: 0.0ms | Allocations: 23339)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2021-01-27 17:24:49 +0300
+Processing by Devise::SessionsController#new as HTML
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 1.5ms | Allocations: 637)
+  Rendered devise/shared/_form_wrap.html.erb (Duration: 0.4ms | Allocations: 134)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 22.7ms | Allocations: 8112)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered shared/_head.html.erb (Duration: 6.7ms | Allocations: 3019)
+  Rendered shared/_flash_notice.html.erb (Duration: 0.1ms | Allocations: 49)
+  Rendered shared/_header.html.erb (Duration: 0.6ms | Allocations: 164)
+  Rendered layout layouts/application.html.erb (Duration: 30.9ms | Allocations: 11586)
+Completed 200 OK in 56ms (Views: 33.1ms | ActiveRecord: 1.8ms | Allocations: 21603)
+
+
+Started GET "/" for 127.0.0.1 at 2021-01-27 17:24:51 +0300
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.2ms | Allocations: 36)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered shared/_head.html.erb (Duration: 7.7ms | Allocations: 3028)
+  Rendered shared/_flash_notice.html.erb (Duration: 0.1ms | Allocations: 49)
+  Rendered shared/_header.html.erb (Duration: 0.6ms | Allocations: 198)
+  Rendered layout layouts/application.html.erb (Duration: 9.7ms | Allocations: 3553)
+Completed 200 OK in 12ms (Views: 10.5ms | ActiveRecord: 0.0ms | Allocations: 3939)
+
+
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+Started GET "/" for 127.0.0.1 at 2021-01-28 13:23:21 +0300
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 1.1ms | Allocations: 221)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered shared/_head.html.erb (Duration: 11.7ms | Allocations: 4731)
+  Rendered shared/_flash_notice.html.erb (Duration: 0.6ms | Allocations: 234)
+  Rendered shared/_header.html.erb (Duration: 2.6ms | Allocations: 499)
+  Rendered layout layouts/application.html.erb (Duration: 18.0ms | Allocations: 6482)
+Completed 200 OK in 31ms (Views: 20.4ms | ActiveRecord: 0.0ms | Allocations: 9797)
+
+
+Started GET "/" for 127.0.0.1 at 2021-01-28 13:24:20 +0300
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.1ms | Allocations: 36)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered shared/_head.html.erb (Duration: 5.1ms | Allocations: 3028)
+  Rendered shared/_flash_notice.html.erb (Duration: 0.2ms | Allocations: 49)
+  Rendered shared/_header.html.erb (Duration: 0.6ms | Allocations: 190)
+  Rendered layout layouts/application.html.erb (Duration: 6.9ms | Allocations: 3545)
+Completed 200 OK in 8ms (Views: 7.6ms | ActiveRecord: 0.0ms | Allocations: 3929)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2021-01-28 13:24:22 +0300
+Processing by Devise::SessionsController#new as HTML
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 1.5ms | Allocations: 641)
+  Rendered devise/shared/_form_wrap.html.erb (Duration: 0.6ms | Allocations: 134)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 10.7ms | Allocations: 5098)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered shared/_head.html.erb (Duration: 4.8ms | Allocations: 3006)
+  Rendered shared/_flash_notice.html.erb (Duration: 0.1ms | Allocations: 49)
+  Rendered shared/_header.html.erb (Duration: 0.3ms | Allocations: 164)
+  Rendered layout layouts/application.html.erb (Duration: 16.7ms | Allocations: 8558)
+Completed 200 OK in 36ms (Views: 18.8ms | ActiveRecord: 1.2ms | Allocations: 17701)
+
+
